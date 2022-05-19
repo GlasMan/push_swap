@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/16 14:13:35 by agunes            #+#    #+#             */
+/*   Updated: 2022/05/18 18:14:06 by agunes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+
+typedef struct s_list
+{
+	int *stacka;
+	int *fa1;
+	int *sorted;
+	int *stackb;
+	int blen;
+	int tut;
+	int alen;
+	int count;
+}           t_list;
+
+#endif
