@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mid_push_swap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:13:31 by agunes            #+#    #+#             */
-/*   Updated: 2022/05/20 16:12:48 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:21:47 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
+
+
+void	sa(t_list *test)
+{
+	int temp = test->stacka[0];
+	test->stacka[0] = test->stacka[1];
+	test->stacka[1] = temp;
+	printf("sa\n");
+}
 
 int *sorted(int *arr, int l)
 {
@@ -52,7 +61,7 @@ int is_sorted(int *arr, int l)
         j = 0;
         while (j < l)
         {
-            if(arr[i] >= arr[j])
+            if(arr[i] > arr[j])
                 return 0;
             j++;
         }
@@ -152,6 +161,7 @@ void    pb(t_list *test)
     test->alen--;
     shift_up(test->stacka, test->alen);
     test->count++;
+	test->ic++;
     printf("pb\n");
 }
 
@@ -191,6 +201,19 @@ int find_min(t_list *test)
     return (min);
 }
 
+int 	find_hmn(t_list *test, int mid)
+{
+	int i = 0;
+	while (i < test->alen)
+	{
+		if(test->sorted[i] == mid)
+			break;
+		i++;
+	}
+	return i;
+}
+
+
 int main(int argc, char **argv)
 {
 	t_list	*test;
@@ -201,13 +224,19 @@ int main(int argc, char **argv)
     int f = 0;
     int tut = argc - 1;
 	int x = argc - 1;
-    int xn = 0;
+    int mid = 0;
+	int	k = 0;
+	int xn = 0;
+	test->ic = 0;
+	int hmn = 0;
     test->tut = argc - 1;
     test->alen = x;
 	test->stacka = malloc(sizeof(int) * x);
 	test->stackb = malloc(sizeof(int) * x);
     test->fa1 = malloc(sizeof(int) * x);
     test->sorted = malloc(sizeof(int) * x);
+	test->mids = malloc(sizeof(int) * x);
+	test->mids2 = malloc(sizeof(int) * x);
     test->blen = 0;
 	i = 1;
 	while(i <= x)
@@ -217,28 +246,44 @@ int main(int argc, char **argv)
 		a++;
     }
     i = 0;
-    while(test->alen)
-    {
-        int min = find_min(test);
-        xn = find_index(test, min);
-        if(xn < (test->alen / 2))
-        {
-            while(test->stacka[0] != min)
-                ra(test);
-        }
-        else
-        {
-            while(test->stacka[0] != min)
-                rra(test);
-        }
-        pb(test);
-    }
-    while(argc - 1 > 0)
-    {
-        pa(test);
-        argc--;
-    }
-    i = 0;
+	a = 0;
+	while (test->alen > 2)
+	{
+		test->sorted = sorted(test->stacka, test->alen);
+		mid = test->sorted[test->alen / 2];
+		hmn = find_hmn(test, mid);
+		for(i = 0; i < test->alen; i++)
+			printf("%d ", test->sorted[i]);
+		i = 0;
+		printf("\nmid = %d hmn = %d\n", mid, hmn);
+		while (test->ic < hmn)
+		{
+			if(test->stacka[0] >= mid)
+				ra(test);
+			else if(test->stacka[test->alen] == mid)
+			{
+				rra(test);
+				pb(test);
+			}
+			else
+			{
+				test->mids[a++] = test->stacka[0];
+				pb(test);
+			}
+		}
+		test->mids = sorted(test->mids, a);
+		test->mids2[k++] = test->mids[a / 2];
+		a = 0;
+		test->ic = 0;
+	}
+	if(is_sorted(test->stacka, test->alen))
+		sa(test);
+	i = 0;
+	printf("\nmids:\n");
+	for(i = 0; i < k; i++)
+		printf("%d ", test->mids2[i]);
+	printf("\n");
+	i = 0;
     while(i < tut)
     {
         printf("[%d] [%d]\n", test->stacka[i], test->stackb[i]);

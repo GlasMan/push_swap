@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:13:35 by agunes            #+#    #+#             */
-/*   Updated: 2022/05/18 18:14:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/05/20 16:17:50 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ typedef struct s_list
 	int *fa1;
 	int *sorted;
 	int *stackb;
+	int	*mids;
+	int *mids2;
 	int blen;
 	int tut;
 	int alen;
+	int ic;
 	int count;
 }           t_list;
 
