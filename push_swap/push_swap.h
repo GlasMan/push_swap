@@ -24,8 +24,8 @@ typedef struct s_list
 	int *fa1;
 	int *sorted;
 	int *stackb;
-	int	**mids;
-	int *mids2;
+	int	**chunk;
+	int *chunk_l;
 	int blen;
 	int tut;
 	int alen;
@@ -33,6 +33,7 @@ typedef struct s_list
 	int count;
 }           t_list;
 
+void	mid_sort(t_list *test);
 void	pb(t_list *test);
 void	pa(t_list *test);
 void	ra(t_list *test);

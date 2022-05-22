@@ -25,15 +25,14 @@ int main(int argc, char **argv)
     int mid = 0;
     int k = 0;
     test->ic = 0;
-    int da = 0;
-    int hmn = 0;
+    test->count = 0;
     test->alen = x;
     test->stacka = malloc(sizeof(int) * x);
     test->stackb = malloc(sizeof(int) * x);
     test->fa1 = malloc(sizeof(int) * x);
     test->sorted = malloc(sizeof(int) * x);
-    test->mids = (int **)malloc(sizeof(int *) * x);
-    test->mids2 = malloc(sizeof(int) * x);
+    test->chunk = (int **)malloc(sizeof(int *) * x);
+    test->chunk_l = malloc(sizeof(int) * x);
     test->blen = 0;
     i = 1;
     while (i <= x)
@@ -43,101 +42,16 @@ int main(int argc, char **argv)
         a++;
     }
     i = 0;
-    a = 0;
-    while (test->alen > 2)
+        for (int y = 0; y < test->alen; y++)
+            printf("[%d] [%d]\n", test->stacka[y], test->stackb[y]);
+    while (!is_sorted(test->stacka, test->alen))
     {
-        test->sorted = sorted(test->stacka, test->alen);
-        mid = test->sorted[test->alen / 2];
-        hmn = find_hmn(test, mid);
-        for (i = 0; i < test->blen; i++)
-            printf("%d ", test->stackb[i]);
-        i = 0;
-        printf("\nmid = %d hmn = %d son = %d\n", mid, hmn, test->stacka[test->alen - 1]);
-        test->mids[a] = malloc(sizeof(int) * hmn);
-        while (test->ic < hmn)
-        {
-            if (test->stacka[0] >= mid)
-                ra(test);
-            else
-            {
-                test->mids[a][b++] = test->stacka[0];
-                pb(test);
-            }
-        }
-        a++;
-        test->mids2[c++] = b;
-        b = 0;
-        test->ic = 0;
-    }
-    a--;
-    c--;
-    test->ic = 0;
-    if (test->stacka[0] > test->stacka[1])
-        sa(test);
-    printf("Diğer While stack =\n");
-    for (i = 0; i < test->alen; i++)
-        printf("%d ", test->stacka[i]);
-    printf("\n");
-    while (test->blen >= 0 && a >= 0)
-    {
-        test->sorted = sorted(test->mids[a], test->mids2[c]);
-        mid = test->sorted[test->mids2[c] / 2];
-        int o = 0;
-        printf("Dongu Basi mid = %d\n", mid);
-        for (i = 0; i < test->blen; i++)
-            printf("%d ", test->stackb[i]);
-        printf("\n");
-        while (test->mids2[c] >= 0 && o < 6 && c >= 0)
-        {
-            if (test->stackb[0] < mid && test->mids2[c] != 1)
-            {
-                da++;
-                rb(test);
-            }
-            if (test->mids2[c] == 1)
-            {
-                pa(test);
-                for (i = 0; i < test->alen; i++)
-                    printf("%d ", test->stacka[i]);
-                printf("\n");
-                break;
-            }
-            else
-            {
-                if (test->stackb[0] < test->stackb[1])
-                    sb(test);
-                pa(test);
-                test->mids2[c]--;
-                while (da > 0)
-                {
-                    rrb(test);
-                    da--;
-                }
-            }
-            o++;
-            i = 0;
-        }
-        if (is_sorted(test->stacka, test->alen))
-            sa(test);
-        a--;
-        c--;
-    }
-    pa(test);
-    for (i = 0; i < test->alen; i++)
-        printf("[%d] [%d]\n", test->stacka[i], test->stackb[i]);
-    return (0);
-}
-
-/*     i = 0;
-    while (i < test->blen)
-    {
-        printf("[%d]    [%d]\n", test->stacka[i], test->stackb[i]);
+        mid_sort(test);
+        printf("%d. sıralama\n", i);
+        for (int y = 0; y < test->alen; y++)
+            printf("[%d] [%d]\n", test->stacka[y], test->stackb[y]);
         i++;
     }
-    printf("mids =\n");
-    for (i = 0; i < a; i++)
-    {
-        printf("\n");
-        for (int j = 0; j < 6; j++)
-            printf("%d ", test->mids[i][j]);
-    } */
+    printf("adım sayısı = %d\n", test->count);
+    return (0);
+}

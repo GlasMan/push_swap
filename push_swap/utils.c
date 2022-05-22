@@ -37,13 +37,8 @@ int is_sorted(int *arr, int l)
 
     while (i < l)
     {
-        j = 0;
-        while (j < l)
-        {
-            if (arr[i] > arr[j])
-                return 0;
-            j++;
-        }
+        if (arr[i] > arr[i + 1] && i + 1 < l)
+            return 0;
         i++;
     }
     return 1;

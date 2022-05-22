@@ -39,8 +39,8 @@ void pb(t_list *test)
     test->stackb[0] = test->stacka[0];
     test->alen--;
     shift_up(test->stacka, test->alen);
-    test->count++;
     test->ic++;
+    test->count++;
     printf("pb\n");
 }
 
@@ -51,7 +51,7 @@ void pa(t_list *test)
     test->stacka[0] = test->stackb[0];
     test->blen--;
     shift_up(test->stackb, test->blen);
-    test->count++;
     test->ic++;
+    test->count++;
     printf("pa\n");
 }

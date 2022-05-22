@@ -28,6 +28,7 @@ void rb(t_list *test)
         i++;
     }
     test->stackb[x - 1] = temp;
+    test->count++;
     printf("rb\n");
 }
 
