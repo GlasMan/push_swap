@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include <fcntl.h>
-# include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 
@@ -25,7 +24,7 @@ typedef struct s_list
 	int *fa1;
 	int *sorted;
 	int *stackb;
-	int	*mids;
+	int	**mids;
 	int *mids2;
 	int blen;
 	int tut;
@@ -33,5 +32,21 @@ typedef struct s_list
 	int ic;
 	int count;
 }           t_list;
+
+void	pb(t_list *test);
+void	pa(t_list *test);
+void	ra(t_list *test);
+void	rb(t_list *test);
+void	rra(t_list *test);
+void	rrb(t_list *test);
+void	sa(t_list *test);
+void	sb(t_list *test);
+void	shift_up(int *arr, int c);
+int		*shift_down(int *arr, int l);
+int		*sorted(int *arr, int l);
+int		is_sorted(int *arr, int l);
+int		find_min(t_list *test);
+int		find_hmn(t_list *test, int mid);
+int		find_hmn2(t_list *test, int mid);
 
 #endif
