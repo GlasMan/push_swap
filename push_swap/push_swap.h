@@ -24,8 +24,12 @@ typedef struct s_list
 	int *fa1;
 	int *sorted;
 	int *stackb;
-	int	**chunk;
-	int *chunk_l;
+	int **achunk;
+	int **bchunk;
+	int	*achunk_l;
+	int	all;
+	int *bchunk_l;
+	int bll;
 	int blen;
 	int tut;
 	int alen;
@@ -49,5 +53,6 @@ int		is_sorted(int *arr, int l);
 int		find_min(t_list *test);
 int		find_hmn(t_list *test, int mid);
 int		find_hmn2(t_list *test, int mid);
+int		is_ascending(int *arr, int l);
 
 #endif

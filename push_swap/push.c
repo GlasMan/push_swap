@@ -3,8 +3,7 @@
 void shift_up(int *arr, int c)
 {
     int i = 0;
-    int x = c;
-    while (i < x)
+    while (i < c)
     {
         arr[i] = arr[i + 1];
         i++;

@@ -31,8 +31,8 @@ int main(int argc, char **argv)
     test->stackb = malloc(sizeof(int) * x);
     test->fa1 = malloc(sizeof(int) * x);
     test->sorted = malloc(sizeof(int) * x);
-    test->chunk = (int **)malloc(sizeof(int *) * x);
-    test->chunk_l = malloc(sizeof(int) * x);
+    test->bchunk = (int **)malloc(sizeof(int *) * x);
+    test->bchunk_l = malloc(sizeof(int) * x);
     test->blen = 0;
     i = 1;
     while (i <= x)
@@ -42,16 +42,10 @@ int main(int argc, char **argv)
         a++;
     }
     i = 0;
-        for (int y = 0; y < test->alen; y++)
-            printf("[%d] [%d]\n", test->stacka[y], test->stackb[y]);
     while (!is_sorted(test->stacka, test->alen))
     {
+        printf("%d. sıralama\n", i++);
         mid_sort(test);
-        printf("%d. sıralama\n", i);
-        for (int y = 0; y < test->alen; y++)
-            printf("[%d] [%d]\n", test->stacka[y], test->stackb[y]);
-        i++;
     }
-    printf("adım sayısı = %d\n", test->count);
     return (0);
 }

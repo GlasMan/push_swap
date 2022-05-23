@@ -44,6 +44,22 @@ int is_sorted(int *arr, int l)
     return 1;
 }
 
+int is_ascending(int *arr, int l)
+{
+    int i = 0;
+    int j = 0;
+
+    while (i < l)
+    {
+        if (arr[i] < arr[i + 1] && i + 1 < l)
+            return 0;
+        i++;
+    }
+    return 1;
+}
+
+
+
 int find_min(t_list *test)
 {
     int min = test->stacka[0];
