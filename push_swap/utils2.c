@@ -1,82 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 15:39:57 by scoskun           #+#    #+#             */
-/*   Updated: 2022/06/02 12:35:16 by scoskun          ###   ########.fr       */
+/*   Created: 2022/05/28 11:08:06 by scoskun           #+#    #+#             */
+/*   Updated: 2022/06/02 16:01:11 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_max_bit(t_list *data)
-{
-	int	i;
-	int	x;
-
-	i = 0;
-	x = data->sorted_l;
-	while (x)
-	{
-		x >>= 1;
-		i++;
-	}
-	return (i);
-}
-
-void	copy_array(t_list *data)
+int	is_sorted(t_list *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->alen)
 	{
-		data->sorted[i] = data->stacka[i];
+		if (data->stacka[i] > data->stacka[i + 1] && i + 1 < data->alen)
+			return (0);
 		i++;
 	}
-	data->sorted_l = i - 1;
+	ft_exit(data, data->flag = 0);
+	return (1);
 }
 
-void	sorted(t_list *data)
+void	is_double(t_list *data)
 {
 	int	i;
 	int	j;
-	int	temp;
 
 	i = 0;
-	j = 0;
-	temp = 0;
-	copy_array(data);
 	while (i < data->alen)
 	{
 		j = 0;
 		while (j < data->alen)
 		{
-			if (data->sorted[i] < data->sorted[j])
-			{
-				temp = data->sorted[i];
-				data->sorted[i] = data->sorted[j];
-				data->sorted[j] = temp;
-			}
+			if (data->stacka[i] == data->stacka[j] && i != j)
+				ft_exit(data, data->flag = 1);
 			j++;
 		}
 		i++;
 	}
 }
 
-int	find_index(t_list *data, int tf)
+int	is_ascending(int *arr, int l)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (i < data->sorted_l)
+	j = 0;
+	while (i < l)
 	{
-		if (data->sorted[i] == tf)
-			break ;
+		if (arr[i] < arr[i + 1] && i + 1 < l)
+			return (0);
 		i++;
 	}
-	return (i);
+	return (1);
 }
