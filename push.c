@@ -32,7 +32,7 @@ int	*shift_down(int *arr, int l)
 	int	*arr1;
 
 	i = 1;
-	arr1 = malloc(sizeof(int) * l + 1);
+	arr1 = malloc(sizeof(int) * l + 4);
 	arr1[0] = 0;
 	temp = arr[l - 1];
 	while (i < l)

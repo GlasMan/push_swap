@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 17:52:08 by scoskun           #+#    #+#             */
-/*   Updated: 2022/06/02 16:21:26 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/06/03 17:20:12 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	radix_sort(t_list *data)
 	int	xn;
 
 	i = 0;
+	xn = 0;
 	max = find_max_bit(data);
 	while (i < max)
 	{
@@ -73,7 +74,7 @@ void	radix_sort(t_list *data)
 		while (j < data->keep)
 		{
 			xn = find_index(data, data->stacka[0]);
-			if ((xn >> i) & 1)
+			if (xn >> i & 1)
 				ra(data);
 			else
 				pb(data);
@@ -87,10 +88,10 @@ void	radix_sort(t_list *data)
 
 void	sorting(t_list *data)
 {
-	if (data->alen > 5)
-		radix_sort(data);
+	if (data->alen == 3)
+		three_sort(data);
 	else if (data->alen == 5)
 		five_sort(data);
 	else
-		three_sort(data);
+		radix_sort(data);
 }

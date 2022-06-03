@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:24:51 by scoskun           #+#    #+#             */
-/*   Updated: 2022/06/02 18:21:48 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/06/03 17:14:03 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	setup(t_list *data)
 {
-	data->stacka = malloc(sizeof(int) * data->alen);
-	data->stackb = malloc(sizeof(int) * data->blen);
-	data->sorted = malloc(sizeof(int) * data->alen);
+	data->stacka = calloc(sizeof(int), data->alen + 1);
+	data->stackb = calloc(sizeof(int), data->alen + 1);
+	data->sorted = calloc(sizeof(int), data->alen + 1);
 	data->flag = 0;
 	create(data);
 	sorted(data);
@@ -58,7 +58,7 @@ void	check_create(t_list *data)
 	j = 0;
 	i = 1;
 	k = 0;
-	while (data->av[i])
+	while (data->av[i] != NULL)
 	{
 		data->split = ft_split(data->av[i], ' ');
 		j = 0;
